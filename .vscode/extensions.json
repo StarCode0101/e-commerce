@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ecmel.vscode-html-css",
+        "coenraads.bracket-pair-colorizer-2",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag"
+    ]
+}

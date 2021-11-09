@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Kumbh Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=c4ml1n92AsfhuCq6tVsauoJP9IL3PSaRWfhV&skey=2eab798a80b69c4a&v=v6) format('woff2');
+}
+@font-face {
+  font-family: 'Kumbh Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=c4ml1n92AsfhuCq6tVsauoJP9IL3PSaRWfhV&skey=2eab798a80b69c4a&v=v6) format('woff2');
+}
