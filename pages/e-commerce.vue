@@ -47,7 +47,7 @@
               <div
                 class="indicator-item badge text-white i-primary-bg border-0"
                 style="height: 1rem; width: 0.5rem"
-                v-if="cartCount > 0"
+                v-if="showCart"
               >
                 {{ cartCount }}
               </div>
@@ -65,12 +65,12 @@
 
             <div
               tabindex="0"
-              class="shadow-lg dropdown-content bg-base-100 rounded-md w-80 -mr-5 lg:-mr-0 mt-5 lg:mt-0 lg:w-72"
+              class="shadow-lg h-52 dropdown-content bg-base-100 rounded-md w-80 -mr-5 lg:-mr-0 mt-5 lg:mt-0 lg:w-72"
               :class="[cartCount <= 0 ? 'h-52' : '']"
             >
               <h2 class="font-bold text-sm border-b-2 border-gray-200 py-4 px-4">Cart</h2>
 
-              <div v-if="cartCount <= 0" class="flex h-2/3 items-center justify-center">
+              <div v-if="!showCart" class="flex h-2/3 items-center justify-center">
                 <h2 class="text-gray-500">Your cart is empty</h2>
               </div>
               <div v-else class="flex flex-col py-5 px-4">
@@ -90,7 +90,7 @@
                       </p>
                     </div>
                   </div>
-                  <div class="flex-none">
+                  <div class="flex-none" @click="deleteCart">
                     <svg
                       width="14"
                       height="16"
@@ -107,7 +107,9 @@
                     </svg>
                   </div>
                 </div>
-                <button class="btn btn-i-primary w-full my-4">Checkout</button>
+                <button class="btn btn-i-primary w-full my-4 normal-case">
+                  Checkout
+                </button>
               </div>
             </div>
           </div>
@@ -223,7 +225,7 @@
               >
                 <div
                   class="flex-0 i-primary font-bold cursor-pointer p-4"
-                  @click="cartCount == 0 ? '' : cartCount--"
+                  @click="cartCount == 0 ? (showCart = false) : cartCount--"
                 >
                   <svg
                     width="12"
@@ -263,6 +265,7 @@
               </button>
               <button
                 class="btn btn-i-primary i-primary-shadow w-full my-2 lg:my-0 lg:w-2/5 normal-case"
+                @click="addToCart"
               >
                 <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -394,6 +397,7 @@ export default {
       isMobile: false,
       price: 125,
       cartCount: 0,
+      showCart: false,
       modalOpen: false,
       images: [
         "image-product-1",
@@ -418,6 +422,20 @@ export default {
     },
   },
   methods: {
+    addToCart() {
+      if (this.cartCount > 0) {
+        this.showCart = true;
+        return true;
+      } else {
+        this.showCart = false;
+        return false;
+      }
+    },
+
+    deleteCart() {
+      this.cartCount = 0;
+      this.showCart = false;
+    },
     openMenu() {
       if (this.$refs.LeftDrawer.active) {
         this.$refs.LeftDrawer.close();
@@ -435,11 +453,11 @@ export default {
     },
 
     showModal() {
-      //only show modal in big screens
       this.modalOpen = true;
-      /*  if (this.windowWidth < 1280) {
-        //dont show modal or render it un clickable
-      } */
+      if (this.windowWidth < 1280) {
+        //only show lightbox in big screens
+        // this.modalOpen = false;
+      }
     },
   },
 
@@ -515,6 +533,6 @@ html {
 }
 
 svg.control:hover {
-  color: hsl(26, 100%, 55%);
+  fill: hsl(26, 100%, 55%);
 }
 </style>
