@@ -2,6 +2,9 @@
   <ul id="links" class="menu bg-base-100" :class="[isMobile ? '' : 'horizontal']">
     <slot></slot>
     <li>
+      <a href="#"> Collections </a>
+    </li>
+    <li>
       <a href="#"> Menu</a>
     </li>
     <li>
@@ -9,6 +12,9 @@
     </li>
     <li>
       <a href="#"> About </a>
+    </li>
+    <li>
+      <a href="#"> Contact </a>
     </li>
   </ul>
 </template>

@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div
-        class="navbar pb-0 text-black bg-white lg:pt-4 lg:bottom-1 lg:bg-base-100 container mx-auto"
+        class="navbar items-center pb-0 text-black bg-white lg:pt-4 lg:bottom-1 lg:bg-base-100 container mx-auto"
         style="border-bottom-width: 1px"
       >
         <!--Hamburger  On mobile display and flex-none -->
@@ -42,27 +42,38 @@
           <nav-links :is-mobile="isMobile"></nav-links>
         </div>
         <div class="flex-none">
-          <button class="btn btn-square btn-ghost">
-            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
-                fill="#69707D"
-                fill-rule="nonzero"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div class="flex-none rounded-full w-8 h-8">
-          <!--  Cart dropdown -->
           <div class="dropdown dropdown-end">
-            <img tabindex="0" src="~/assets/images/image-avatar.png" alt="avatar" />
+            <div tabindex="0" class="indicator">
+              <div
+                class="indicator-item badge text-white i-primary-bg border-0"
+                style="height: 1rem; width: 0.5rem"
+                v-if="cartCount > 0"
+              >
+                {{ cartCount }}
+              </div>
+
+              <div class="cursor-pointer">
+                <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                    fill="#69707D"
+                    fill-rule="nonzero"
+                  />
+                </svg>
+              </div>
+            </div>
+
             <div
               tabindex="0"
-              class="shadow-lg dropdown-content bg-base-100 rounded-md w-80 mt-5 lg:mt-0 lg:w-72"
+              class="shadow-lg dropdown-content bg-base-100 rounded-md w-80 -mr-5 lg:-mr-0 mt-5 lg:mt-0 lg:w-72"
+              :class="[cartCount <= 0 ? 'h-52' : '']"
             >
-              <h2 class="font-bold text-sm border-b-2 border-gray-500 py-4 px-4">Cart</h2>
-              <div class="flex flex-col py-5 px-4">
+              <h2 class="font-bold text-sm border-b-2 border-gray-200 py-4 px-4">Cart</h2>
+
+              <div v-if="cartCount <= 0" class="flex h-2/3 items-center justify-center">
+                <h2 class="text-gray-500">Your cart is empty</h2>
+              </div>
+              <div v-else class="flex flex-col py-5 px-4">
                 <div class="flex items-center">
                   <img
                     class="flex-none w-11 h-11 rounded-sm"
@@ -70,7 +81,7 @@
                   />
                   <div class="flex-1">
                     <div class="px-2">
-                      <p class="text-md font-thin truncate" style="max-width: 8rem">
+                      <p class="text-md font-thin truncate" style="max-width: 13rem">
                         Autumn Limited Edition...
                       </p>
                       <p class="text-md font-thin">
@@ -100,6 +111,15 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="flex-none rounded-full w-8 h-8 ml-4">
+          <!--  Cart dropdown -->
+          <img
+            class="avatar cursor-pointer"
+            src="~/assets/images/image-avatar.png"
+            alt="avatar"
+          />
         </div>
       </div>
     </nav>
@@ -199,10 +219,10 @@
 
             <div class="flex flex-wrap lg:flex-nowrap lg:space-x-2">
               <button
-                class="flex w-full btn bg-gray-200 border-0 active:bg-gray-200 hover:bg-gray-200 no-animation lg:w-1/5"
+                class="flex flex-nowrap w-full btn bg-gray-200 border-0 active:bg-gray-200 hover:bg-gray-200 no-animation lg:w-1/5"
               >
                 <div
-                  class="flex-0 i-primary font-bold cursor-pointer"
+                  class="flex-0 i-primary font-bold cursor-pointer p-4"
                   @click="cartCount == 0 ? '' : cartCount--"
                 >
                   <svg
@@ -220,9 +240,9 @@
                     <use fill="#FF7E1B" fill-rule="nonzero" xlink:href="#a" />
                   </svg>
                 </div>
-                <h3 class="flex-1 i-primary font-bold">{{ cartCount }}</h3>
+                <h3 class="flex-1 font-bold text-black">{{ cartCount }}</h3>
                 <div
-                  class="flex-0 i-primary font-bold"
+                  class="flex-0 i-primary font-bold cursor-pointer p-4"
                   @click="cartCount >= 0 ? cartCount++ : ''"
                 >
                   <svg
@@ -242,9 +262,16 @@
                 </div>
               </button>
               <button
-                class="btn btn-i-primary i-primary-shadow w-full my-2 lg:my-0 lg:w-2/5"
+                class="btn btn-i-primary i-primary-shadow w-full my-2 lg:my-0 lg:w-2/5 normal-case"
               >
-                Add to cart
+                <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                    fill="#FFFFFF"
+                    fill-rule="nonzero"
+                  />
+                </svg>
+                <span class="ml-2 text-sm">Add to cart</span>
               </button>
             </div>
           </div>
@@ -451,7 +478,8 @@ html {
 
 .btn-i-primary:hover,
 .btn-i-primary:active {
-  background-color: hsl(26deg 84% 47%);
+  background-color: hsl(26, 100%, 55%);
+  opacity: 0.5;
 }
 
 .i-primary-shadow {
@@ -470,17 +498,20 @@ html {
 
 .image-list > img {
   z-index: 1;
-  @apply border-2 rounded-md;
-  border-color: hsl(26, 100%, 55%);
+  @apply border-0 rounded-md;
 }
 
+.avatar:hover {
+  @apply rounded-full border-2;
+  border-color: hsl(26, 100%, 55%);
+}
 .image-list:hover::after {
   position: absolute;
   content: "";
   background-color: rgb(253 253 253 / 64%);
   @apply w-full h-full inset-0 border-2 rounded-md;
   border-color: hsl(26, 100%, 55%);
-  z-index: 10;
+  z-index: 2;
 }
 
 svg.control:hover {
