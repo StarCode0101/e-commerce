@@ -26,7 +26,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://starcode-dev.netlify.app/e-commerce/)
+- Live Site URL:(https://starcode-dev.netlify.app/e-commerce/)
 
 ## My process
 
