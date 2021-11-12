@@ -40,5 +40,5 @@ Users should be able to:
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/starCode0101)
+- Frontend Mentor - [@starCode0101](https://www.frontendmentor.io/profile/starCode0101)
 - Twitter - [@i_am_starcode](https://www.twitter.com/i_am_starcode)
