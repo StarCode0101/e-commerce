@@ -20,8 +20,10 @@ Users should be able to:
 - View the cart and remove items from it
 
 ### Screenshot
+![starcode-dev netlify app_e-commerce_(Moto G4)](https://user-images.githubusercontent.com/66052346/141462144-279fdc41-5d95-4a88-8f21-85b4131d961b.png)
+![starcode-dev netlify app_e-commerce_(Nest Hub Max)](https://user-images.githubusercontent.com/66052346/141462153-ca8716e9-5519-43f4-bc5e-9180a2dec2f4.png)
 
-![](./screenshot.jpg)
+
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
